@@ -1,9 +1,13 @@
 ﻿namespace IMIRT.SaveSystem
 {
-    internal interface ISaveFileHandler
+    public interface ISaveFileHandler
     {
-        void SaveData(string dataString);
+        void SaveData(string dataString, string key);
 
-        string LoadData();
+        string LoadData(string key);
+
+        void DeleteData(string key);
+
+        bool Exists(string key);
     }
 }

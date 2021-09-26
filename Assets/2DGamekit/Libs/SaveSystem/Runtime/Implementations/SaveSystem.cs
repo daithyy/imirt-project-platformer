@@ -6,6 +6,8 @@ namespace IMIRT.SaveSystem
         
         private ISaveFileHandler m_SaveFileHandler;
 
+        private string SaveFileName => "SaveFile";
+
         public void Save<T>(T data)
         {
             /*  Take data and convert it to whatever format
@@ -14,12 +16,12 @@ namespace IMIRT.SaveSystem
 
             string dataString = m_Serialiser.SerialiseObject(data);
 
-            m_SaveFileHandler.SaveData(dataString);
+            m_SaveFileHandler.SaveData(dataString, SaveFileName);
         }
 
         public T Load<T>()
         {
-            string dataString = m_SaveFileHandler.LoadData();
+            string dataString = m_SaveFileHandler.LoadData(SaveFileName);
 
             return m_Serialiser.DeserialiseObject<T>(dataString);
         }
