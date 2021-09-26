@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 
-namespace IMIRT.SaveSystem.Assets._2DGamekit.Libs.SaveSystem.Runtime.Implementations
+namespace IMIRT.SaveSystem
 {
     public class PlayerPrefsSaveFileHandler : ISaveFileHandler
     {
-        public void SaveData(string dataString, string key)
+        public void SaveData(string key, string dataString)
         {
             PlayerPrefs.SetString(key, dataString);
         }
 
         public string LoadData(string key)
         {
+            Debug.Log(key);
             return PlayerPrefs.GetString(key);
         }
 

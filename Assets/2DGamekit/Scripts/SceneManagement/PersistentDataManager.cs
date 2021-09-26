@@ -145,5 +145,14 @@ namespace Gamekit2D
             };
         }
 
+        public Dictionary<string, Data> GetSaveData()
+        {
+            return m_Store;
+        }
+
+        public void SetSaveData(Dictionary<string, Data> data)
+        {
+            m_Store = data;
+        }
     }
 }

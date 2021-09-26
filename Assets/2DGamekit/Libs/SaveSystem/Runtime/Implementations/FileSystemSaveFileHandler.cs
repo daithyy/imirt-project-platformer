@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using UnityEngine;
 
-namespace IMIRT.SaveSystem.Assets._2DGamekit.Libs.SaveSystem.Runtime.Implementations
+namespace IMIRT.SaveSystem
 {
     public class FileSystemSaveFileHandler : ISaveFileHandler
     {
-        public void SaveData(string dataString, string key)
+        public void SaveData(string key, string dataString)
         {
             string filePath = GetFilePath(key);
 

@@ -2,7 +2,7 @@
 {
     public interface ISaveFileHandler
     {
-        void SaveData(string dataString, string key);
+        void SaveData(string key, string data);
 
         string LoadData(string key);
 

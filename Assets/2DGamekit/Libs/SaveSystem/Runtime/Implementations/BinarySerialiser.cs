@@ -6,9 +6,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMIRT.SaveSystem.Assets._2DGamekit.Libs.SaveSystem.Runtime.Implementations
+namespace IMIRT.SaveSystem
 {
-    public class BinaryFileFormatFormatter : ISerialiser
+    public class BinarySerialiser : ISerialiser
     {
         public string SerialiseObject<T>(T dataObject)
         {

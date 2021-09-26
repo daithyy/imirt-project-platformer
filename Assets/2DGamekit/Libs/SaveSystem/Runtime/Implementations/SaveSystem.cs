@@ -1,12 +1,26 @@
+using UnityEngine;
+
 namespace IMIRT.SaveSystem
 {
-    public class SaveSystem : ISaveSystem
+    [RequireComponent(typeof(ISaveSystemFactory))]
+    public class SaveSystem : MonoBehaviour, ISaveSystem
     {
         private ISerialiser m_Serialiser;
         
         private ISaveFileHandler m_SaveFileHandler;
 
+        private ISaveSystemFactory m_SaveSystemFactory;
+
         private string SaveFileName => "SaveFile";
+
+        public void Awake()
+        {
+            m_SaveSystemFactory = GetComponent<ISaveSystemFactory>();
+
+            m_SaveFileHandler = m_SaveSystemFactory.SaveFileHandler();
+
+            m_Serialiser = m_SaveSystemFactory.Serialiser();
+        }
 
         public void Save<T>(T data)
         {
@@ -14,16 +28,27 @@ namespace IMIRT.SaveSystem
              *  store the data
              */
 
-            string dataString = m_Serialiser.SerialiseObject(data);
+            string serialisedString = m_Serialiser.SerialiseObject<T>(data);
 
-            m_SaveFileHandler.SaveData(dataString, SaveFileName);
+            Debug.Log(serialisedString);
+
+            m_SaveFileHandler.SaveData(SaveFileName, serialisedString);
         }
 
         public T Load<T>()
         {
-            string dataString = m_SaveFileHandler.LoadData(SaveFileName);
+            string serialisedString = m_SaveFileHandler.LoadData(SaveFileName);
 
-            return m_Serialiser.DeserialiseObject<T>(dataString);
+            Debug.Log(serialisedString);
+
+            if (string.IsNullOrEmpty(serialisedString))
+            {
+                return default;
+            }
+
+            T result = m_Serialiser.DeserialiseObject<T>(serialisedString);
+
+            return result != null ? result : default;
         }
     }
 }
