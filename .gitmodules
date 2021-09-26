@@ -1,0 +1,3 @@
+[submodule "Assets/Libs/SaveSystemModule"]
+	path = Assets/Libs/SaveSystemModule
+	url = https://github.com/daithyy/live-submodule.git
